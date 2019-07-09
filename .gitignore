@@ -1,5 +1,6 @@
 *.mat
 *.jpg
 *.fig
+*.asv
 /MATLAB/res
 /SportsThinking/Data
