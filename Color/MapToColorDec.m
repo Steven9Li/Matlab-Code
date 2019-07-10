@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function color = MapToColorDec(mc)
 % 将传进来的colormap转为十进制形式
 % mc：n*3的二维矩阵，要求值在0~255之间
