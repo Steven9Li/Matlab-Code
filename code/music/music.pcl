@@ -1,0 +1,55 @@
+array <int> findex[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+array <string> fnames[16];
+
+# load wave file
+loop int i = 1
+until i>findex.count()
+begin
+	fnames[i] = string(i)+".wav";
+	i=i+1;
+end;
+
+# randomly play across files.
+findex.shuffle();
+
+instruction_trial.present();
+before_ec_trial.present();
+spontaneous_ec_trial.present();
+drip_trial.present();
+loop int i = 1 
+until i>findex.count()
+begin
+	### spontaneous after
+	before_eo_trial.present();
+	event2.set_port_code(50+findex[i]);
+	event2.set_event_code(string(50+findex[i]));
+	sub_eo_trial.present();
+	before_music_trial.present();
+	drip_trial.present();
+	##relax_trial.present();
+	### present plus picture
+	wavefile1.set_filename(fnames[findex[i]]);
+	wavefile1.load();
+	event1.set_port_code(10+findex[i]);
+	event1.set_event_code(string(10+findex[i]));
+	main_trial.present();
+	wavefile1.unload();
+	fixation.set_part(1,plus);
+	### spontaneous after
+	before_eo_trial.present();
+	event2.set_port_code(70+findex[i]);
+	event2.set_event_code(string(70+findex[i]));
+	sub_eo_trial.present();
+	drip_trial.present();
+	### questionnaire
+	qn1_trial.present();
+	qn2_trial.present();
+	qn3_trial.present();
+	qn4_trial.present();
+	if i != findex.count() then
+		relax_1min_trial.present();
+		drip_trial.present();
+	end;
+	i=i+1;
+end;
+end_trial.present();
